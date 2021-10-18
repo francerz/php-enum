@@ -84,6 +84,9 @@ abstract class AbstractEnum
 
     public static function coerce($valueOrKey, $strict = true)
     {
+        if ($valueOrKey instanceof static) {
+            return $valueOrKey;
+        }
         $constants = static::getConstants();
         if (in_array($valueOrKey, $constants, $strict)) {
             return new static($valueOrKey);
